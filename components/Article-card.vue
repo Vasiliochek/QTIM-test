@@ -66,16 +66,15 @@ const props = defineProps({
   max-width: 280px;
   height: 74px;
 
-  margin: 0;
   margin-bottom: 12px;
   
-  display: -webkit-box;
+  /** EСЛИ ТЕКСТ БОЛЕЕ 3 СТРОК, РАСКОМЕНТИТЬ! */
+  /* display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
   
-
   font-size: 20px;
   line-height: 24px;
 }

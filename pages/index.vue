@@ -41,9 +41,6 @@ if (articles.value?.length) {
   font-size: 84px;
   font-weight: 400;
 
-  margin: 0;
-  padding: 0;
-
   margin-bottom: 59px;
 }
 

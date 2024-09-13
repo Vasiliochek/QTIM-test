@@ -45,8 +45,6 @@
 
   font-size: 20px;
 
-  margin: 0;
-  padding: 0;
 }
 
 .header__list__item {
