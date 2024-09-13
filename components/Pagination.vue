@@ -1,17 +1,54 @@
 <template>
-  <div class="pagination__container">
-    <button class="pagination__btn num-btn active-btn">1</button>
-    <button class="pagination__btn num-btn">2</button>
-    <button class="pagination__btn num-btn">3</button>
-    <button class="pagination__btn num-btn">4</button>
-    <button class="pagination__btn num-btn">5</button>
-    <button class="pagination__btn next-btn">
+  <div class="pagination__container" v-if="totalPages > 1">
+    <button 
+      class="pagination__btn arrow-btn"
+      @click="setActivePage(activePage - 1)"
+      :hidden="activePage === 1"
+    >
+      <IconsNextArrowPagination :style="{transform: 'rotate(180deg)'}"/>
+    </button>
+    <button 
+      v-for="i in totalPages" 
+      :key="i" 
+      :class="[activePage === i ? 'active-btn' : '']"
+      class="pagination__btn num-btn"
+      @click="setActivePage(i)"
+      :hidden="paginationSizing(i)"
+    >
+      {{ i }}
+    </button>
+    <button 
+      class="pagination__btn arrow-btn"
+      @click="setActivePage(activePage + 1)"
+      :hidden="activePage === totalPages "
+    >
       <IconsNextArrowPagination />
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
+
+
+
+const store = qtimStore()
+const totalPages = storeToRefs(store).totalPages
+const activePage = storeToRefs(store).activePage
+
+const setActivePage = (i: number) => {
+  activePage.value = i
+}
+
+const paginationSizing = (i: number) => {
+
+  const half = Math.floor(totalPages.value / 2)
+
+  if (i === 1 && activePage.value > 1) return true
+  if (activePage.value <= half) return i > half
+  if (i < activePage.value - 3) return true
+  if (activePage.value > half) return i > activePage.value 
+}
+
 </script>
 
 <style scoped>
@@ -25,12 +62,12 @@
 
   border-radius: 12px;
 
-  
-
-  padding: 11px 17px 11px 17px;
+  text-align: center;
 
   font-size: 16px;
   line-height: 8px;
+
+  transition: all 0.3s ease;
 }
 
 .num-btn {
@@ -41,9 +78,19 @@
   background-color: var(--hover-gray);
 }
 
-.next-btn {
+.arrow-btn {
   background-color: var(--main-white);
   outline: 1px solid var(--main-gray);
+
+  transition: all 0.3s ease;
+}
+
+.arrow-btn:hover {
+  background-color: var(--hover-gray);
+}
+
+.arrow-btn:active {
+  background-color: rgb(148, 148, 148);
 }
 
 .next-btn:hover {

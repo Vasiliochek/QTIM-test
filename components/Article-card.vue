@@ -1,16 +1,29 @@
 <template>
   <div class="article-card__container">
     <div class="article-card__img">
-      <img src="@/public/image-test.jpg" alt="Article-image">
+      <img src="https://random.imagecdn.app/280/280" alt="Article-image">
     </div>
     <div class="article-card__descr">
-      <p class="article-card__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, nostrum sunt odit, fugit nam cumque minus veniam fuga esse sed quas error eum similique, adipisci sit commodi nesciunt dolores distinctio!</p>
-      <button class="article-card__btn">Read more</button>
+      <p class="article-card__text">
+        {{ props.cardInfo.preview }}
+      </p>
+      <button 
+        @click="$router.push(`/${props.cardInfo.id}`)" 
+        class="article-card__btn"
+      >Read more</button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+
+const props = defineProps({
+  cardInfo: {
+    type: Object,
+    required: true
+  }
+})
+
 </script>
 
 <style scoped>
