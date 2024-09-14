@@ -43,9 +43,8 @@ const paginationSizing = (i: number) => {
 
   const half = Math.floor(totalPages.value / 2)
 
-  if (i === 1 && activePage.value > 1) return true
+  if (i === 1 && activePage.value > 1 || i < activePage.value - 3) return true
   if (activePage.value <= half) return i > half
-  if (i < activePage.value - 3) return true
   if (activePage.value > half) return i > activePage.value 
 }
 
